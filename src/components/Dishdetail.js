@@ -23,7 +23,7 @@ const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 const isNumber = (val) => !isNaN(Number(val));
 const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-const Dishdetail = ({ dish, comments }) => {
+const Dishdetail = ({ dish, comments, addComment }) => {
     return (
         <div className="container">
             <div className="row">
@@ -44,7 +44,7 @@ const Dishdetail = ({ dish, comments }) => {
                 </div>
                 <div className="col-12 col-md-5 m-1">
                     <RenderComments comments={comments} />
-                    <CommentForm />
+                    <CommentForm addComment={addComment} dishId={dish.id} />
                 </div>
             </div>
         </div>
@@ -98,8 +98,8 @@ class CommentForm extends React.Component {
         });
     };
     handleSubmit = (values) => {
-        console.log('Current State is: ' + JSON.stringify(values));
-        alert('Current State is: ' + JSON.stringify(values), this.toggleModal());
+        this.toggleModal();
+        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
     };
     render() {
         const { isModalOpen } = this.state;
@@ -170,9 +170,9 @@ class CommentForm extends React.Component {
                                 </Col>
                             </Row>
                             <Row className="form-group">
-                                <Col md={{ size: 10, offset: 2 }}>
+                                <Col md={12}>
                                     <Button type="submit" color="primary">
-                                        Send Feedback
+                                        Submit
                                     </Button>
                                 </Col>
                             </Row>
