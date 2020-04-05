@@ -17,38 +17,56 @@ import {
 } from 'reactstrap';
 import { Control, LocalForm, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
+import { Loading } from './Loading';
 
 const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
-const isNumber = (val) => !isNaN(Number(val));
-const validEmail = (val) => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
-const Dishdetail = ({ dish, comments, addComment }) => {
-    return (
-        <div className="container">
-            <div className="row">
-                <Breadcrumb>
-                    <BreadcrumbItem>
-                        <Link to="/menu">Menu</Link>
-                    </BreadcrumbItem>
-                    <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
-                </Breadcrumb>
-                <div className="col-12">
-                    <h3>{dish.name}</h3>
-                    <hr />
+
+const Dishdetail = ({ dish, comments, addComment, isLoading, errMess }) => {
+    if (isLoading) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Loading />
                 </div>
             </div>
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    <RenderDish dish={dish} />
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    <RenderComments comments={comments} />
-                    <CommentForm addComment={addComment} dishId={dish.id} />
+        );
+    } else if (errMess) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <h4>{errMess}</h4>
                 </div>
             </div>
-        </div>
-    );
+        );
+    } else if (dish != null) {
+        return (
+            <div className="container">
+                <div className="row">
+                    <Breadcrumb>
+                        <BreadcrumbItem>
+                            <Link to="/menu">Menu</Link>
+                        </BreadcrumbItem>
+                        <BreadcrumbItem active>{dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{dish.name}</h3>
+                        <hr />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        <RenderDish dish={dish} />
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        <RenderComments comments={comments} />
+                        <CommentForm addComment={addComment} dishId={dish.id} />
+                    </div>
+                </div>
+            </div>
+        );
+    }
 };
 
 export default Dishdetail;
