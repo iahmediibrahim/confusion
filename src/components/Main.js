@@ -8,7 +8,7 @@ import Contact from './Contact';
 import Footer from './Footer';
 import { Switch, Redirect, Route, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { addComment, fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
+import { fetchDishes, fetchComments, fetchPromos, fetchLeaders, postComment } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 
 const mapStateToProps = (state) => {
@@ -21,14 +21,12 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-    addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment)),
+    postComment: (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment)),
     fetchDishes: () => dispatch(fetchDishes()),
     fetchPromos: () => dispatch(fetchPromos()),
     fetchComments: () => dispatch(fetchComments()),
     fetchLeaders: () => dispatch(fetchLeaders()),
-    resetFeedbackForm: () => {
-        dispatch(actions.reset('feedback'));
-    },
+    resetFeedbackForm: () => dispatch(actions.reset('feedback')),
 });
 
 class Main extends React.Component {
@@ -40,7 +38,7 @@ class Main extends React.Component {
     }
 
     render() {
-        const { dishes, promotions, leaders, comments, addComment, resetFeedbackForm } = this.props;
+        const { dishes, promotions, leaders, comments, postComment, resetFeedbackForm } = this.props;
         const HomePage = () => {
             return (
                 <Home
@@ -67,7 +65,7 @@ class Main extends React.Component {
                         (comment) => comment.dishId === parseInt(match.params.dishId, 10),
                     )}
                     commentsErrMess={comments.errMess}
-                    addComment={addComment}
+                    postComment={postComment}
                 />
             );
         };

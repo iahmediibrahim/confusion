@@ -24,7 +24,7 @@ const required = (val) => val && val.length;
 const maxLength = (len) => (val) => !val || val.length <= len;
 const minLength = (len) => (val) => val && val.length >= len;
 
-const Dishdetail = ({ dish, comments, addComment, isLoading, errMess }) => {
+const Dishdetail = ({ dish, comments, postComment, isLoading, errMess }) => {
     if (isLoading) {
         return (
             <div className="container">
@@ -62,7 +62,7 @@ const Dishdetail = ({ dish, comments, addComment, isLoading, errMess }) => {
                     </div>
                     <div className="col-12 col-md-5 m-1">
                         <RenderComments comments={comments} />
-                        <CommentForm addComment={addComment} dishId={dish.id} />
+                        <CommentForm postComment={postComment} dishId={dish.id} />
                     </div>
                 </div>
             </div>
@@ -118,7 +118,7 @@ class CommentForm extends React.Component {
     };
     handleSubmit = (values) => {
         this.toggleModal();
-        this.props.addComment(this.props.dishId, values.rating, values.author, values.comment);
+        this.props.postComment(this.props.dishId, values.rating, values.author, values.comment);
     };
     render() {
         const { isModalOpen } = this.state;

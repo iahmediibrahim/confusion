@@ -24,29 +24,21 @@ const RenderCard = ({ item, isLoading, errMess }) => {
         return null;
     }
 };
-const Home = ({
-    dish,
-    promotion,
-    leader,
-    dishesLoading,
-    dishesErrMess,
-    promoLoading,
-    promoErrMess,
-    leadersLoading,
-    leadersErrMess,
-}) => {
+
+const Home = (props) => {
     return (
         <div className="row align-items-start">
             <div className="col-12 col-md m-1">
-                <RenderCard item={dish} isLoading={dishesLoading} errMess={dishesErrMess} />
+                <RenderCard item={props.dish} isLoading={props.dishesLoading} errMess={props.dishesErrMess} />
             </div>
             <div className="col-12 col-md m-1">
-                <RenderCard item={promotion} isLoading={promoLoading} errMess={promoErrMess} />
+                <RenderCard item={props.promotion} isLoading={props.promosLoading} errMess={props.promosErrMess} />
             </div>
             <div className="col-12 col-md m-1">
-                <RenderCard item={leader} isLoading={leadersLoading} errMess={leadersErrMess} />
+                <RenderCard item={props.leader} isLoading={props.leadersLoading} errMess={props.leadersErrMess} />
             </div>
         </div>
     );
 };
+
 export default Home;
