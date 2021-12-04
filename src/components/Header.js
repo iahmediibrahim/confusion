@@ -58,22 +58,22 @@ class Header extends Component {
                         <Collapse isOpen={isNavOpen} navbar>
                             <Nav className="ml-auto" navbar>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/home">
+                                    <NavLink className="nav-link" to="/confusion/home">
                                         <span className="fa fa-home fa-lg" /> Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/aboutus">
+                                    <NavLink className="nav-link" to="/confusion/aboutus">
                                         <span className="fa fa-info fa-lg" /> About Us
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/menu">
+                                    <NavLink className="nav-link" to="/confusion/menu">
                                         <span className="fa fa-list fa-lg" /> Menu
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/contactus">
+                                    <NavLink className="nav-link" to="/confusion/contactus">
                                         <span className="fa fa-address-card fa-lg" /> Contact Us
                                     </NavLink>
                                 </NavItem>
