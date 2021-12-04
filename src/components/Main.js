@@ -92,7 +92,7 @@ class Main extends React.Component {
                                     component={() => <About leaders={leaders.leaders} />}
                                 />
                                 <Route exact path="/confusion/menu" component={() => <Menu dishes={dishes} />} />
-                                <Route path="/confusion/menu/:dishId" component={DishWithId} />
+                                <Route exact path="/confusion/menu/:dishId" component={DishWithId} />
                                 <Route
                                     exact
                                     path="/confusion/contactus"
@@ -100,7 +100,7 @@ class Main extends React.Component {
                                         <Contact postFeedback={postFeedback} resetFeedbackForm={resetFeedbackForm} />
                                     )}
                                 />
-                                <Redirect to="/confusion/home" />
+                                <Redirect exact to="/confusion/home" />
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>

@@ -10,16 +10,16 @@ function Footer(props) {
                         <h5>Links</h5>
                         <ul className="list-unstyled">
                             <li>
-                                <Link to="/home">Home</Link>
+                                <Link to="/confusion/home">Home</Link>
                             </li>
                             <li>
-                                <Link to="/aboutus">About Us</Link>
+                                <Link to="/confusion/aboutus">About Us</Link>
                             </li>
                             <li>
-                                <Link to="/menu">Menu</Link>
+                                <Link to="/confusion/menu">Menu</Link>
                             </li>
                             <li>
-                                <Link to="/contactus">Contact Us</Link>
+                                <Link to="/confusion/contactus">Contact Us</Link>
                             </li>
                         </ul>
                     </div>
@@ -42,8 +42,7 @@ function Footer(props) {
                             </a>
                             <a
                                 className="btn btn-social-icon btn-facebook"
-                                href="http://www.facebook.com/profile.php?id="
-                            >
+                                href="http://www.facebook.com/profile.php?id=">
                                 <i className="fa fa-facebook" />
                             </a>
                             <a className="btn btn-social-icon btn-linkedin" href="http://www.linkedin.com/in/">
