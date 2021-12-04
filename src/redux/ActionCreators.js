@@ -1,6 +1,10 @@
 import * as ActionTypes from './ActionTypes';
 import { baseUrl } from '../shared/baseUrl';
-
+const headers = {
+    'Access-Control-Allow-Origin': '*',
+    Accept: 'application/json;odata.metadata=full',
+    'Content-Type': 'application/json',
+};
 export const addComment = (comment) => ({
     type: ActionTypes.ADD_COMMENT,
     payload: comment,
@@ -16,9 +20,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     return fetch(baseUrl + 'comments', {
         method: 'POST',
         body: JSON.stringify(newComment),
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers,
         credentials: 'same-origin',
     })
         .then(
@@ -46,7 +48,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 // Dishes actions
 export const fetchDishes = () => (dispatch) => {
     dispatch(dishesLoading(true));
-    return fetch(baseUrl + 'dishes')
+    return fetch(baseUrl + 'dishes', { headers })
         .then(
             (response) => {
                 if (response.ok) {
@@ -82,7 +84,7 @@ export const addDishes = (dishes) => ({
 
 // Comments actions
 export const fetchComments = () => (dispatch) => {
-    return fetch(baseUrl + 'comments')
+    return fetch(baseUrl + 'comments', { headers })
         .then(
             (response) => {
                 if (response.ok) {
@@ -117,7 +119,7 @@ export const addComments = (comments) => ({
 export const fetchPromos = () => (dispatch) => {
     dispatch(promosLoading(true));
 
-    return fetch(baseUrl + 'promotions')
+    return fetch(baseUrl + 'promotions', { headers })
         .then(
             (response) => {
                 if (response.ok) {
@@ -156,7 +158,7 @@ export const addPromos = (promos) => ({
 export const fetchLeaders = () => (dispatch) => {
     dispatch(leadersLoading());
 
-    return fetch(baseUrl + 'leaders')
+    return fetch(baseUrl + 'leaders', { headers })
         .then(
             (response) => {
                 if (response.ok) {
@@ -198,9 +200,7 @@ export const postFeedback = (feedback) => (dispatch) => {
     return fetch(baseUrl + 'feedback', {
         method: 'POST',
         body: JSON.stringify(newFeedback),
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers,
         credentials: 'same-origin',
     })
         .then(

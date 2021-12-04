@@ -85,18 +85,22 @@ class Main extends React.Component {
                     <TransitionGroup>
                         <CSSTransition key={this.props.location.key} classNames="page" timeout={300}>
                             <Switch>
-                                <Route path="/home" component={HomePage} />
-                                <Route exact path="/aboutus" component={() => <About leaders={leaders.leaders} />} />
-                                <Route exact path="/menu" component={() => <Menu dishes={dishes} />} />
-                                <Route path="/menu/:dishId" component={DishWithId} />
+                                <Route path="/confusion/home" component={HomePage} />
                                 <Route
                                     exact
-                                    path="/contactus"
+                                    path="/confusion/aboutus"
+                                    component={() => <About leaders={leaders.leaders} />}
+                                />
+                                <Route exact path="/confusion/menu" component={() => <Menu dishes={dishes} />} />
+                                <Route path="/confusion/menu/:dishId" component={DishWithId} />
+                                <Route
+                                    exact
+                                    path="/confusion/contactus"
                                     component={() => (
                                         <Contact postFeedback={postFeedback} resetFeedbackForm={resetFeedbackForm} />
                                     )}
                                 />
-                                <Redirect to="/home" />
+                                <Redirect to="/confusion/home" />
                             </Switch>
                         </CSSTransition>
                     </TransitionGroup>
